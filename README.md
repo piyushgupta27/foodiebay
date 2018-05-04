@@ -12,7 +12,7 @@ Technical choices taken:
   
   2.) Google Maps Utils Library used for making Google Map Marker Clusters. The rationale behind using this util library was the huge chunk of Food Facilities dataset available within a concentrated location. Using this library for the current use case instead of just adding Google Markers, proved to be efficient both in memory and performance aspects of the app. As an example, San Fransisco Food Facility Permit Data contains around 700 odd Food Facilities and showing this dataset on maps using markers is not good in terms of Memory for an app and this is where using Google Maps Cluster Utils helped.
   
-  In this project, the Splash Screen Bottom-Up animation is something that i like a lot. Such animations are not used much in Splash screens acroos Android apps. This is one idea I had for Shuttl app and implemented the same there and thus chose to showcase the same in this project as well. 
+In this project, the Splash Screen Bottom-Up animation is something that i like a lot. Such animations are not used much in Splash screens across Android apps. This is one idea I had for Shuttl app and implemented the same there and thus chose to showcase the same in this project as well. 
 
 
 
