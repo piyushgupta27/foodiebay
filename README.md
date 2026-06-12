@@ -1,21 +1,26 @@
 # foodiebay
-Sample App to show filterable Food Trucks Data on a Map
 
-Problem Statement: 
-  Food Trucks Problem: Create an app that tells the user what types of food trucks might be found near a specific location on a map. The data is available on DataSF: https://data.sfgov.org/Permitting/Mobile-Food-Facility-Permit/rqzj-sfat.
-  
-Solution:
-  FoodieBay is an app which retrieves data from SFOpen Data (Mobile Food Facility Permit) and geolocalizes the Food facilities on a map. It also helps the user determine the types of FoodFacilities which might be found near a particular location.
-  
-Technical choices taken:
+An Android app that finds **food trucks near you on a map** — built in **2015** as my take-home for a **HyperTrack** interview. It became my way in: the solution converted into the offer.
 
-1.) Retrofit Library used for Network Calls with parsing using Gson Library. Retrofit handles entire network call along with JSON/XML Parsing including Serialization/Deserialization. Avoids writing boilerplate code for initiatng network calls, maintaining asynchronous and synchronous calls. Also, Retrofit is very easy to use with good documentation and community support available.
+I keep it public on purpose. It's early-career work, and that's the point — a marker of where I started and how I thought about engineering a decade ago.
 
-2.) Google Maps Utils Library used for making Google Map Marker Clusters. The rationale behind using this util library was the huge chunk of Food Facilities dataset available within a concentrated location. Using this library for the current use case instead of just adding Google Markers, proved to be efficient both in memory and performance aspects of the app. As an example, San Fransisco Food Facility Permit Data contains around 700 odd Food Facilities and showing this dataset on maps using markers is not good in terms of Memory for an app and this is where using Google Maps Cluster Utils helped.
-  
-In this project, the Splash Screen Bottom-Up animation is something that i like a lot. Such animations are not used much in Splash screens across Android apps. This is one idea I had for Shuttl app and implemented the same there and thus chose to showcase the same in this project as well. 
+## What it does
+Plots San Francisco's mobile food facilities (the public [DataSF permit dataset](https://data.sfgov.org/Permitting/Mobile-Food-Facility-Permit/rqzj-sfat)) on Google Maps, and helps you see what kinds of food trucks are likely near a given spot.
 
+## How it was built (2015)
+- **Android / Java**, `minSdk 16` / `targetSdk 23`.
+- **Retrofit + Gson** for the DataSF API — clean async networking without boilerplate.
+- **Google Maps + maps-utils marker clustering** — the dataset is ~700 facilities packed into a small area, so raw markers were a memory/perf problem; clustering fixed it.
+- **Crashlytics (Fabric)** for crash reporting *(note: Fabric has since been sunset by Google)*.
+- A splash-screen animation I was fond of — an idea I'd first shipped at Shuttl.
 
+## Looking back — what I'd do differently today
+Leaving the original code intact; the gap *is* the story. If I built this now:
+- **Architecture** — MVVM + repository and a real state layer, not Activity-driven logic.
+- **Language / async** — Kotlin + coroutines/Flow over Java + callbacks.
+- **Secrets** — externalized from day one. The original hard-coded its API keys in `build.gradle`; that's fixed here (keys now read from a gitignored `gradle.properties`), and the old values are retired.
+- **Testing / CI** — unit + UI tests and a pipeline, neither of which 2015-me wrote.
+- **Resilience** — cache the dataset; degrade gracefully offline.
 
-
-
+## Status
+Not actively maintained — preserved as a historical artifact. Current work: **[piyushgupta.io](https://piyushgupta.io/)**.
